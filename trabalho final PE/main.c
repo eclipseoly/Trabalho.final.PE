@@ -211,7 +211,7 @@ int sairlab(int w){
                     //tira todos os usuarios do  lab cujo a segunda pessoa e responsavel
                     FILE *arquivolab;
                     arquivolab=fopen("lab.txt","a");
-                    fprintf(arquivolab,"LAB: %d fechado",x[k].statuslabresp);
+                    fprintf(arquivolab,"LAB: %d fechado\n",x[k].statuslabresp);
                     fclose(arquivolab);
                     for(int j=0;j<=i;j++){
                         if(x[j].statuslab==x[k].statuslabresp && k!=j){
@@ -249,7 +249,7 @@ int sairlab(int w){
             if(op2==1){
                 FILE *arquivolab;
                 arquivolab=fopen("lab.txt","a");
-                fprintf(arquivolab,"LAB: %d fechado",x[w].statuslabresp);
+                fprintf(arquivolab,"LAB: %d fechado\n",x[w].statuslabresp);
                 fclose(arquivolab);
                 for(int j=0;j<=i;j++){
                     if(x[j].statuslab==x[w].statuslabresp && w!=j){
