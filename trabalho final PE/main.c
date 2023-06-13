@@ -492,7 +492,7 @@ void verdenuncias(){
         if(x[w].quantdenun==0){
             printf("esse usuario nao tem denuncias\n");
         }else{
-            for(int j=1;j<=x[w].quantdenun;j++){
+            for(int j=0;j<=x[w].quantdenun;j++){
                 printf("%s\n",x[w].y[j].denuncias);
             }
         }
