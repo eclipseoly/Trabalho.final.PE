@@ -410,7 +410,7 @@ int login(){
                     veravisos(w);
                 break;
                 case 6:
-                    printf("seu id é: %d\n",x[w].id);
+                    printf("seu id é: %d\n",w);
                     printf("pressione ENTER para continuar: ");
                     scanf("%c",&temp);
                     scanf("%c",&temp);
