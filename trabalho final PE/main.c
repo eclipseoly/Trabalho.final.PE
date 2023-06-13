@@ -189,7 +189,7 @@ int sairlab(int w){
                 k=verif(aux);
                 printf("codigo de troca da pessoa (id): ");
                 scanf("%d",&auxcod);
-            }while(k==-1 && auxcod!=x[k].id);
+            }while(k==-1 || auxcod!=k);
             x[k].quantavisos++;
             x[k].avisos[x[k].quantavisos]=2;
             //2 e o codigo de troca do algoritmo
@@ -490,7 +490,7 @@ void verdenuncias(){
             w=verif(aux);
         }while(w==-1);
         if(x[w].quantdenun==0){
-            printf("esse usuario nao tem denuncias");
+            printf("esse usuario nao tem denuncias\n");
         }else{
             for(int j=1;j<=x[w].quantdenun;j++){
                 printf("%s\n",x[w].y[j].denuncias);
@@ -536,3 +536,4 @@ int main()
     }while(op!=6);
     return 0;
 }
+
