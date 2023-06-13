@@ -218,19 +218,24 @@ int sairlab(int w){
                             x[j].statuscomp=0;
                         }
                     }
-                x[w].statuslabresp=0;
                     x[k].statuslabresp=x[w].statuslabresp;
                     x[k].statuslab=x[w].statuslab;
+                    x[w].statuslabresp=0;
                     printf("troca realizada :]\n");
                     x[k].quantavisos++;
-                    x[k].avisos[x[k].quantavisos]=1;
+                    x[k].avisos[x[k].quantavisos]=2;
+                    //2---codigo de troca, avisa a pessoa que alguem troca de lab/pc com voce
+                    if(x[k].statuscomp==0){
+                        x[k].statuslab=0;
+                    }
+                    //statuslab so vai ser zero se a pessoa quiser sair do computador tbm ou se nao estiver usando nenhum pc
                 }
             }else{
                 x[k].statuscomp=x[w].statuscomp;
                 x[k].statuslab=x[w].statuslab;
                 printf("troca realizada :]\n");
                 x[k].quantavisos++;
-                x[k].avisos[x[k].quantavisos]=1;
+                x[k].avisos[x[k].quantavisos]=2;
                 //avisa o usuario que alguem trocou com ele
                 if(x[w].statuslabresp==0){
                     x[w].statuslab=0;
@@ -252,9 +257,15 @@ int sairlab(int w){
                     }
                     //para que quando alguem que agendou o lab (seu responsavel) sair do lab todos saiam tbm
                 }
+                if(x[w].statuscomp==0){
+                    x[w].statuslab=0;
+                }
                 x[w].statuslabresp=0;
             }else{
                 x[w].statuscomp=0;
+                if(x[w].statuslabresp==0){
+                    x[w].statuslab=0;
+                }
             }
         }
     printf("tudo certo :]\n");
@@ -265,7 +276,7 @@ int sairlab(int w){
     scanf("%c",&temp);
     scanf("%c",&temp);
 }
-void agendarcomp(int w){
+int agendarcomp(int w){
     int op,op2;
     if(x[w].statuscomp==0){
         do{
@@ -285,7 +296,11 @@ void agendarcomp(int w){
             if(x[j].statuscomp==op2 && x[j].statuslab==op){
                 //verifica se alguem ja esta usando o mesmo computador no mesmo lab
                 printf("computador ocupado\n");
-                break;
+                printf("pressione ENTER para continuar: ");
+                char temp;
+                scanf("%c",&temp);
+                scanf("%c",&temp);
+                return 0;
             }
         }
         if(y==-1){
@@ -296,6 +311,7 @@ void agendarcomp(int w){
         }else{
             printf("ninguem agendou esse laboratorio :[\n");
         }
+        y=0;
     }else{
         printf("voce ja esta com um pc, saia do pc atual\n");
         printf("pressione ENTER para continuar: ");
@@ -310,19 +326,23 @@ void agendarcomp(int w){
     scanf("%c",&temp);
 }
 void veravisos(int w){
-    if(x[w].quantavisos==0){
-        printf("nenhum aviso, avisos so aparecem apos denuncias e trocas de pc/lab\n");
-    }
-    if(x[w].avisos[x[w].quantavisos]==1){
-        printf("alguem te denunciou\n");
-    }else if(x[w].avisos[x[w].quantavisos]==2){
-        printf("alguem trocou de lab com voce\n");
+    for(int j=1;j<=x[w].quantavisos;j++){
+        if(x[w].quantavisos==0){
+            printf("nenhum aviso, avisos so aparecem apos denuncias e trocas de pc/lab\n");
+            break;
+        }
+        if(x[w].avisos[x[w].quantavisos]==1){
+            printf("alguem te denunciou\n");
+        }else if(x[w].avisos[x[w].quantavisos]==2){
+            printf("alguem trocou de lab com voce\n");
+        }
     }
     x[w].quantavisos=0;
     printf("pressione ENTER para continuar: ");
     char temp;
     scanf("%c",&temp);
     scanf("%c",&temp);
+    
 }
 void lab(int w){
     int op;
@@ -438,7 +458,6 @@ void denunciar(){
             printf("\nusuario: ");
             scanf("%c",&temp);
             scanf("%[^\n]",aux);
-            int p=201;
             w=verif(aux);
             //de novo a funcao verif para garantir que o login existe e poder pegar o indice (w) do usuario
         }while(w==-1);
@@ -451,6 +470,7 @@ void denunciar(){
         x[w].quantdenun++;
         x[w].quantavisos++;
         x[w].avisos[x[w].quantavisos]=1;
+        //codigo de denuncia
     }else{
         printf("ninguem pra denunciar\n");
     }
