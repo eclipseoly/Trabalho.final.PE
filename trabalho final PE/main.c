@@ -174,6 +174,10 @@ int sairlab(int w){
         if(op==1 && i==1){
             printf("nao ha com quem trocar\n");
             //se o numero de usuarios "i" for 1, significa que somente o usuario 0 foi cadastrado, logo, nao tem com quem trocar
+            printf("voce nao esta responsavel por nenhum lab");
+            printf("pressione ENTER para continuar: ");
+            scanf("%c",&temp);
+            scanf("%c",&temp);
             return 0;
         }
         if(op==1 && i>1){
