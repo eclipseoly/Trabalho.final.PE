@@ -121,6 +121,7 @@ void agendarlab(int w){
                 //statuslabresp e uma variavel usada para saber quem esta responsavel pelo lab
                 x[w].statuslab=op;
             }
+            y=0;
         }else{
             printf("voce ja alugou um lab\n");
         }
