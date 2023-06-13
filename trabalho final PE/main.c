@@ -63,6 +63,7 @@ void cad(){
         printf("senha: ");
         scanf("%c",&t);
         scanf("%[^\n]",x[i].s);
+        x[w].id=i;
         i++;
     }
 }
